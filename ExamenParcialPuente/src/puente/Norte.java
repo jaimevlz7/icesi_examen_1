@@ -1,11 +1,13 @@
 package puente;
 
+import java.util.concurrent.Semaphore;
+
 public class Norte extends Thread {
 
 	
 	
 	private Puente puente;
-	
+	private Semaphore semaforo;
 	
 	public Norte(Puente p){
 		puente = p;
@@ -22,7 +24,14 @@ public class Norte extends Thread {
             } catch (InterruptedException e) {
 				
             }
-            puente.transitar();
+            try {
+				semaforo.acquire();
+				puente.transitar();
+				semaforo.release();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
             
             

@@ -1,5 +1,7 @@
 package puente;
 
+import java.util.concurrent.Semaphore;
+
 public class Puente {
 
 	public final static int CAP_MAX = 10;
@@ -7,6 +9,7 @@ public class Puente {
 	private boolean sur;
 	private int cantS;
 	private int cantN;
+	private Semaphore semaforo;
 	
 	public Puente(){
 		norte=false;

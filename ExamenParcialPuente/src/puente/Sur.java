@@ -1,11 +1,13 @@
 package puente;
 
+import java.util.concurrent.Semaphore;
+
 public class Sur extends Thread {
 
 	
 	
 	private Puente puente;
-	
+	private Semaphore semaforo;
 	public Sur(Puente p){
 		puente = p;
 	}
@@ -22,9 +24,16 @@ public class Sur extends Thread {
             } catch (InterruptedException e) {
 				
             }
+            try {
+				semaforo.acquire();
+				puente.transitar();
+				semaforo.release();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
-            puente.transitar();
-            
+           
         }
     }
 }
