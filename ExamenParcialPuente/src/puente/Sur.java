@@ -10,6 +10,10 @@ public class Sur extends Thread {
 	private Semaphore semaforo;
 	public Sur(Puente p){
 		puente = p;
+		int cant = 1 + (int) (Math.random() * 10);
+
+		semaforo = new Semaphore(cant);
+
 	}
 	public void run() {
 

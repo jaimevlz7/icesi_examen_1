@@ -11,6 +11,10 @@ public class Norte extends Thread {
 	
 	public Norte(Puente p){
 		puente = p;
+    	int cant = 1 + (int) (Math.random() * 10);
+
+		semaforo = new Semaphore(cant);
+
 	}
 	public void run() {
 
