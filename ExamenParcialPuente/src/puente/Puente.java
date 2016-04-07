@@ -4,12 +4,18 @@ import java.util.concurrent.Semaphore;
 
 public class Puente {
 
+	//Atributos de clase. tiene constante de capacidad máxima. Verificadores de quien esta transitando(boolean norte y suer)
+	//Unos int que expresan la cantidad de carros que se encuentran en cada lado(int cantS y cantN)
+	//Semaforo para la validacion de cuantos carros transiten por cada lado.
+	
 	public final static int CAP_MAX = 10;
 	private boolean norte;
 	private boolean sur;
 	private int cantS;
 	private int cantN;
 	private Semaphore semaforo;
+	
+	//constructor de la clase con inicializacion de los atributos.
 	
 	public Puente(){
 		norte=false;
@@ -19,6 +25,9 @@ public class Puente {
 		semaforo = new Semaphore(1);
 
 	}
+	
+	//Metodo transitar, permite y da el pase de carros o de norte o sur, dependiendo de la condición de quién pase o no. Haciendo un llamado
+	//los metodos transitarSur() y transitarNorte() que da paso a los carros de ese lado en el que esta.
 	public void transitar(){
 		if(norte ==false && sur == false){
 			norte = true;
@@ -36,6 +45,7 @@ public class Puente {
 			System.out.println("Esta transitando norte");
 		}
 	}
+	//Metodos tansitarSur() y transitarNorte() hacen lo mismo solo que en los lados diferentes.
 	private void transitarSur() {
 		if(cantS <= CAP_MAX){
 			cantS = 0;
@@ -57,6 +67,7 @@ public class Puente {
 
 		}
 	}
+	//Metodos get and set *****
 	public boolean isNorte() {
 		return norte;
 	}
