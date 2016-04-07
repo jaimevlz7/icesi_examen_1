@@ -4,10 +4,15 @@ import java.util.concurrent.Semaphore;
 
 public class Sur extends Thread {
 
-	
+	//Atributos de la clase: conexión con clase puente. Inicializacion del semaforo para sincronizar.
+
 	
 	private Puente puente;
 	private Semaphore semaforo;
+		
+		
+	// Constructor de la clase
+	//creo el math.random(); para que el semaforo me permita pasar x cantidad entre 1 y 10
 	public Sur(Puente p){
 		puente = p;
 		int cant = 1 + (int) (Math.random() * 10);
@@ -15,6 +20,8 @@ public class Sur extends Thread {
 		semaforo = new Semaphore(cant);
 
 	}
+	        //metodo run() creacion del hilo y permitir agregar carros cada y tiempo
+
 	public void run() {
 
         while (true) {
